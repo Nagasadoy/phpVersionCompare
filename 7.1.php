@@ -9,6 +9,11 @@ namespace App\PhpSevenOne
         public const CONST3 = 3;
     }
 
+    class TestClass2
+    {
+        private int $x;
+    }
+
     function getString(?string $str): ?string {
         return $str;
     }
