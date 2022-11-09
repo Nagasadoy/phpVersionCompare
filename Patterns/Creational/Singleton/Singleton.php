@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Patterns\Creational;
+namespace App\Patterns\Creational\Singleton;
 
 use Exception;
 
@@ -43,6 +43,9 @@ class LevelManager extends Singleton
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function addLevel(string $levelName, object $level):void
     {
         if(isset($this->levels[$levelName])){
