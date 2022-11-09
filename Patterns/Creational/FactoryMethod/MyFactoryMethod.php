@@ -70,6 +70,10 @@ class FireTowerCreator extends TowerCreator
     }
 }
 
+/**
+ * Клиентский код
+ */
+
 $fireTowerCreator = new FireTowerCreator();
 $frostTowerCreator = new FrostTowerCreator();
 $arrowTowerCreator = new ArrowTowerCreator();
