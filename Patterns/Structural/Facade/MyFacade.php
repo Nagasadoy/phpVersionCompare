@@ -2,8 +2,7 @@
 
 namespace App\Patterns\Structural\Facade;
 
-use App\Patterns\Creational\Prototype\Page;
-use mysql_xdevapi\Exception;
+use Exception;
 
 interface CardInterface
 {
@@ -23,14 +22,17 @@ interface CardInterface
 
 class Card implements CardInterface
 {
-    public function __construct(private string $name)
+    public function __construct(private readonly string $name)
     {
     }
 
+    /**
+     * @throws Exception
+     */
     public function render(
         string $title,
         string $bodyText,
-        bool $frame,
+        bool   $frame,
         string $frameSymbol,
         int    $width,
         int    $height
@@ -40,11 +42,11 @@ class Card implements CardInterface
         if ($frame) {
 
             if ($width < 3) {
-                throw new \Exception('При активной рамке ширина не должна быть меньше 3');
+                throw new Exception('При активной рамке ширина не должна быть меньше 3');
             }
 
             if ($height < 3) {
-                throw new \Exception('При активной рамке высота не должна быть меньше 3');
+                throw new Exception('При активной рамке высота не должна быть меньше 3');
             }
 
             for ($j = 0; $j < $height; $j++) {
@@ -92,12 +94,12 @@ class Mailer
 
 class MyFacade
 {
-    public function sendCard(string $title, string $bodyText, string $sender, string $password, string $recipient)
+    public function sendCard(string $title, string $bodyText, string $sender, string $password, string $recipient): void
     {
         $card = new Card('cardFromFacade');
         try {
             $card->render($title, $bodyText, true, '#', '20', 10,);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo 'Ошибка' . PHP_EOL;
         }
         $mailer = new Mailer($sender, $password, $recipient);
@@ -113,7 +115,13 @@ class MyFacade
  * С фасадом
  */
 $facade = new MyFacade();
-$facade->sendCard('test', 'test', 'example@example.com', '1234', 'test@test.com');
+$facade->sendCard(
+    'test',
+    'test',
+    'example@example.com',
+    '1234',
+    'test@test.com'
+);
 
 /**
  * Без фасада
