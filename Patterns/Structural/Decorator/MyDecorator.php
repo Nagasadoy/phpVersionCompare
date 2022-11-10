@@ -81,3 +81,10 @@ echo PHP_EOL;
 $bracketPrint = new BracketPrint($standartPrint);
 $bracketPrint->print($testMessage);
 echo PHP_EOL;
+
+//Вложенные декораторы
+$bracketPrint = new BracketPrint($bracketPrint);
+$starPrint = new StarPrint($bracketPrint);
+$starPrint->print($testMessage);
+echo PHP_EOL;
+
