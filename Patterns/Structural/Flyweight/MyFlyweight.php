@@ -150,9 +150,5 @@ $treeDb->addTree(coordinate: new Coordinate(1, 2), height: 10, type: 'дуб', a
 $treeDb->getTreeByCoordinate(new Coordinate(1, 1))->getInfo();
 $treeDb->getTreeByCoordinate(new Coordinate(1, 2))->getInfo();
 
-$treeDb->printVariations();
-$treeDb->printTrees();$treeDb->getTreeByCoordinate(new Coordinate(1, 1))->getInfo();
-$treeDb->getTreeByCoordinate(new Coordinate(1, 2))->getInfo();
-
 $treeDb->printVariations(); // вариация 1
 $treeDb->printTrees(); // деревьев 2
