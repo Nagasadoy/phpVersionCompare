@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Patterns\Behavioral\TemplateMethod;
+
 enum DoughType: string
 {
     case THIN = 'тонкое';
