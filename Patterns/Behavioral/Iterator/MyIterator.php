@@ -9,9 +9,11 @@ enum IteratorField
 
 class Car
 {
-    public function __construct(private readonly string $model, private readonly string $color, private readonly float $price)
-    {
-    }
+    public function __construct(
+        private readonly string $model,
+        private readonly string $color,
+        private readonly float $price
+    ) { }
 
     public function getModel(): string
     {
