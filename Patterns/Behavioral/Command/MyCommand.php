@@ -83,7 +83,6 @@ class AttackCommand implements CommandInterface
 
 class SurrenderCommand implements CommandInterface
 {
-
     public function execute(): void
     {
         echo 'Вы сдались! Поражение!' . PHP_EOL;
