@@ -5,6 +5,7 @@ namespace App\Combine;
 use App\Food\AbstractFood;
 use App\Food\FoodContainer;
 use App\Herd\HerdMember;
+use App\Report\CommonReport;
 
 class Combine
 {
@@ -15,7 +16,7 @@ class Combine
 
     private array $foodContainers;
 
-    public function __construct(array $members, array &$foodContainers)
+    public function __construct(array $members, array &$foodContainers, private CommonReport $report)
     {
         $this->members = $members;
         $this->foodContainers = $foodContainers;
@@ -24,7 +25,7 @@ class Combine
     public function feed(): void
     {
         foreach ($this->members as $member) {
-            $member->eat($this->foodContainers);
+            $member->eat($this->foodContainers, $this->report);
         }
     }
 

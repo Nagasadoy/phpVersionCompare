@@ -2,6 +2,8 @@
 
 namespace App\Herd;
 
+use App\Report\ReportInterface;
+
 abstract class HerdMember
 {
     protected HerdMember $herd;
@@ -23,5 +25,5 @@ abstract class HerdMember
         return false;
     }
 
-    abstract public function eat(array &$foods): void;
+    abstract public function eat(array &$foods, ReportInterface $report): void;
 }

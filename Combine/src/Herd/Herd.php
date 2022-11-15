@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Herd;
+use App\Report\CommonReport;
+use App\Report\ReportInterface;
 use SplObjectStorage;
 
 class Herd extends HerdMember
@@ -32,10 +34,10 @@ class Herd extends HerdMember
         return true;
     }
 
-    public function eat(array &$foods): void
+    public function eat(array &$foods, ReportInterface $report): void
     {
         foreach ($this->members as $member) {
-            $member->eat($foods);
+            $member->eat($foods, $report);
         }
     }
 }
