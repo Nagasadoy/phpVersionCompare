@@ -3,8 +3,9 @@
 namespace App\Animal;
 
 use App\Food\AbstractFood;
+use App\Herd\HerdMember;
 
-abstract class AbstractAnimal
+abstract class AbstractAnimal extends HerdMember
 {
     protected AbstractFood $food;
     protected int $howMuchCanEat;
@@ -21,14 +22,20 @@ abstract class AbstractAnimal
         return $this->name;
     }
 
-    public function getFood():AbstractFood
-    {
-        return $this->food;
-    }
-
     public function getHowMuchCanEat(): int
     {
         return $this->howMuchCanEat;
+    }
+
+    abstract public function getFood(): AbstractFood;
+
+    public function eat(array &$foods): void
+    {
+        if (isset($foods[$this->food::class])) {
+            $foods[$this->food::class] -= $this->howMuchCanEat;
+        }
+        echo 'Эта ' . static::class . ' по имени ' . $this->name  . ' съела ' . $this->howMuchCanEat
+            . ' штук ' . $this->getFood()->getFoodName() . PHP_EOL;
     }
 
 }
