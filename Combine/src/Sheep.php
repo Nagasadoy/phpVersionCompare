@@ -12,4 +12,9 @@ class Sheep extends Eater
     {
         $foodContainer->getFood(new Apple(), $this->amountCanEat );
     }
+
+    public function getType(): string
+    {
+        return 'овца';
+    }
 }

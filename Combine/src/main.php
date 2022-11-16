@@ -14,11 +14,12 @@ $eater4 = new Wolf('pp', 11);
 
 $eater4 = new Punish($eater4, 20);
 
-$group = new EaterGroup('стадо овец', Sheep::class);
+$group = new EaterGroup('стадо овец');
 
 try {
     $group->add($eater2);
     $group->add($eater1);
+    $group->add($eater3);
 } catch (Exception $e) {
     echo $e->getMessage() . PHP_EOL;
 }
@@ -36,7 +37,15 @@ $combine = new Combine(
 );
 
 $combine->feed();
-print_r($combine->report);
+print_r($combine->dataForReport);
+
+$blackList = new \SplObjectStorage();
+$blackList->attach($eater4);
+$blackList->attach($eater3);
+
+
+$report1 = new ConsoleReport($blackList);
+$report1->render($combine->dataForReport);
 
 
 

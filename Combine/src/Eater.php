@@ -2,7 +2,7 @@
 
 namespace App;
 
-abstract class Eater implements CanEatInterface
+abstract class Eater implements EaterInterface
 {
 
     public function __construct(public readonly string $name, protected readonly int $amountCanEat)
@@ -22,5 +22,10 @@ abstract class Eater implements CanEatInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function isGroup(): bool
+    {
+        return false;
     }
 }

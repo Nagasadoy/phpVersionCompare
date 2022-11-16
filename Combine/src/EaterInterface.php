@@ -2,7 +2,7 @@
 
 namespace App;
 
-interface CanEatInterface
+interface EaterInterface
 {
     public function eat(FoodContainerInterface $foodContainer): void;
 
@@ -11,4 +11,8 @@ interface CanEatInterface
     public function getAmountHowMuchCanEat():int;
 
     public function getName():string;
+
+    public function getType(): string;
+
+    public function isGroup():bool;
 }

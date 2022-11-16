@@ -13,4 +13,9 @@ class Wolf extends Eater
     {
         $foodContainer->getFood(new Meat(), $this->amountCanEat);
     }
+
+    public function getType(): string
+    {
+        return 'волк';
+    }
 }

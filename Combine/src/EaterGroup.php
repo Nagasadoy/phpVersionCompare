@@ -4,27 +4,30 @@ namespace App;
 
 use Exception;
 
-class EaterGroup implements CanEatInterface
+class EaterGroup implements EaterInterface
 {
     private \SplObjectStorage $group;
+    private ?string $type;
 
-    public function __construct(public readonly string $name, public readonly string $type)
+    public function __construct(public readonly string $name)
     {
         $this->group = new \SplObjectStorage();
+        $this->type = null;
     }
 
     /**
      * @throws Exception
      */
-    public function add(CanEatInterface $eater): void
+    public function add(EaterInterface $eater): void
     {
-        if($eater::class == $this->type
-            || ($eater::class == Punish::class && $eater->getEater()::class == $this->type)
-            // || $eater::class == Punish::class
-        ) {
-            $this->group->attach($eater);
+        if(is_null($this->type)){
+            $this->type = $eater->getType();
+        }
+
+        if($this->type !== $eater->getType()){
+            throw new Exception('В это стадо: ' . $this->type . ' нельзя добавить объект ' . $eater->getType());
         } else {
-            throw new Exception('В это стадо: ' . $this->type . ' нельзя добавить объект' . $eater::class);
+            $this->group->attach($eater);
         }
     }
 
@@ -59,5 +62,15 @@ class EaterGroup implements CanEatInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function isGroup(): bool
+    {
+        return true;
     }
 }

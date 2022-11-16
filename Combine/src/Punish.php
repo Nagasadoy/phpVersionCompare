@@ -2,13 +2,13 @@
 
 namespace App;
 
-class Punish implements CanEatInterface
+class Punish implements EaterInterface
 {
-    public function __construct(private readonly CanEatInterface $eater, private readonly int $punishmentCount)
+    public function __construct(private readonly EaterInterface $eater, private readonly int $punishmentCount)
     {
     }
 
-    public function getEater(): CanEatInterface
+    public function getEater(): EaterInterface
     {
         return $this->eater;
     }
@@ -32,5 +32,15 @@ class Punish implements CanEatInterface
     public function getName(): string
     {
         return $this->eater->getName();
+    }
+
+    public function getType(): string
+    {
+        return $this->eater->getType();
+    }
+
+    public function isGroup(): bool
+    {
+        return $this->eater->isGroup();
     }
 }
