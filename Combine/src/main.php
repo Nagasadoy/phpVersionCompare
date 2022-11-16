@@ -1,53 +1,42 @@
 <?php
+
 namespace App;
-use App\Animal\PunishedState;
-use App\Combine\Combine;
-use App\Food\Apple;
-use App\Food\Meat;
-use App\Herd\Herd;
-use App\Animal\Sheep;
-use App\Animal\Wolf;
-use App\Report\CommonReport;
-use App\Report\ConsoleRender;
-use App\Report\FileRender;
 
-require_once ('../vendor/autoload.php');
+use Exception;
 
-$sheep1 = new Sheep('dolly', 5, new PunishedState(1));
+require_once('../vendor/autoload.php');
 
-$sheep2 = new Sheep('dolly2', 4);
+$eater1 = new Punish(new Sheep('sheep1', 10), 1);
+$eater2 = new Sheep('sheep2', 5);
 
+$eater3 = new Wolf('ff', 3);
+$eater4 = new Wolf('pp', 11);
 
-$wolf = new Wolf('volk', 10);
+$eater4 = new Punish($eater4, 20);
 
-$herd = new Herd('стадо 1', Sheep::class);
+$group = new EaterGroup('стадо овец', Sheep::class);
 
 try {
-    $herd->add($sheep1);
-    $herd->add($sheep2);
-} catch (\Exception $exception) {
-    echo $exception->getMessage() . PHP_EOL;
+    $group->add($eater2);
+    $group->add($eater1);
+} catch (Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
 }
 
-$foods = [
-    Apple::class => 10,
-    Meat::class => 5
-];
-
-$report = new CommonReport([new ConsoleRender(), new FileRender()]);
-$report->addInBlackList($wolf);
+$foodContainer = new FoodContainer(
+    [
+        new FoodRow(new Apple(), 20),
+        new FoodRow(new Meat(), 20),
+    ]
+);
 
 $combine = new Combine(
-    members: [$herd, $wolf],
-    foodContainers: $foods,
-    report: $report
+    eaters: [$group, $eater3, $eater4],
+    foodContainer: $foodContainer
 );
 
 $combine->feed();
-
-print_r($combine->getFoodContainers());
-
-$report->render();
+print_r($combine->report);
 
 
 
