@@ -13,12 +13,10 @@ class Punish implements CanEatInterface
         return $this->eater;
     }
 
-    public function eat(FoodContainerInterface $foodContainer): array
+    public function eat(FoodContainerInterface $foodContainer): void
     {
-
         $foodDecorator = new LimitFoodContainer($foodContainer, $this->punishmentCount);
-        return $this->eater->eat($foodDecorator);
-
+        $this->eater->eat($foodDecorator);
     }
 
     public function canEatThisFood(FoodInterface $food): bool

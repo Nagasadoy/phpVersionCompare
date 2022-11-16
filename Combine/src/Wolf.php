@@ -9,8 +9,8 @@ class Wolf extends Eater
         return $food instanceof Meat;
     }
 
-    public function eat(FoodContainerInterface $foodContainer): array
+    public function eat(FoodContainerInterface $foodContainer): void
     {
-        return $foodContainer->getFood(new Meat(), $this->amountCanEat);
+        $foodContainer->getFood(new Meat(), $this->amountCanEat);
     }
 }

@@ -8,8 +8,8 @@ class Sheep extends Eater
         return $food instanceof Apple;
     }
 
-    public function eat(FoodContainerInterface $foodContainer): array
+    public function eat(FoodContainerInterface $foodContainer): void
     {
-        return $foodContainer->getFood(new Apple(), $this->amountCanEat );
+        $foodContainer->getFood(new Apple(), $this->amountCanEat );
     }
 }

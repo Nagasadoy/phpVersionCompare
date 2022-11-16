@@ -18,17 +18,16 @@ class Combine
         $this->foodContainer = $foodContainer;
     }
 
-    public function getFoodContainer()
-    {
-        return $this->foodContainer;
-    }
-
     public function feed(): void
     {
         $this->report = [];
-
-        foreach ($this->eaters as $eater){
-            $this->report[$eater->getName()] = $eater->eat($this->foodContainer);
+        $countedContainer = new FoodCounterContainer($this->foodContainer);
+        foreach ($this->eaters as $eater) {
+            $countedContainer->clearReport();
+            //$eater->eat($this->foodContainer); Вот так было по-старому (раньше только выполнялись действия) а теперь
+            // countedContainer также выполняет действия, но кроме этого подсчитывает кто и что съел
+            $eater->eat($countedContainer);
+            $this->report[] = ['eater' => $eater->getName(), 'foods' => $countedContainer->getReport()];
         }
     }
 }

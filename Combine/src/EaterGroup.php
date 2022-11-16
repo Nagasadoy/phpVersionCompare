@@ -28,18 +28,12 @@ class EaterGroup implements CanEatInterface
         }
     }
 
-    public function eat(FoodContainerInterface $foodContainer): array
+    public function eat(FoodContainerInterface $foodContainer): void
     {
-        $sum = 0;
-        $foodName = '';
-
         foreach ($this->group as $eater)
         {
-            $foodAndCount = $eater->eat($foodContainer);
-            $foodName = key($foodAndCount);
-            $sum += $foodAndCount[key($foodAndCount)];
+            $eater->eat($foodContainer);
         }
-        return [$foodName => $sum];
     }
 
     /**

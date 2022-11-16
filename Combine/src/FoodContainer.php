@@ -7,7 +7,7 @@ class FoodContainer implements FoodContainerInterface
     /**
      * @param FoodRow[] $foodRows
      */
-    public function __construct(private array $foodRows)
+    public function __construct(private readonly array $foodRows)
     {
     }
 
@@ -16,21 +16,18 @@ class FoodContainer implements FoodContainerInterface
         return $this->foodRows;
     }
 
-    public function getFood(FoodInterface $food, int $amount): array
+    public function getFood(FoodInterface $food, int $amount): int
     {
-        $eated = 0;
-
+        $getted = 0;
         foreach ($this->foodRows as $foodRow) {
 
             if ($foodRow->isFood($food)) {
-                $getted = $foodRow->getFood($amount);
-                $eated += $getted;
-                $amount -= $getted;
+                $getted += $foodRow->getFood($amount);
             }
-            if ($amount === 0) {
+            if ($amount === $getted) {
                 break;
             }
         }
-        return [$food->getName() => $eated];
+        return $getted;
     }
 }
