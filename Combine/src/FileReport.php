@@ -8,6 +8,6 @@ class FileReport extends Report
     {
         $text = '==Файловый отчет==' . PHP_EOL;
         $text .= $this->getTextReport($rawData);
-        fwrite(fopen('report.txt','w+'), $text);
+        fwrite(fopen('report.txt', 'w+'), $text);
     }
 }

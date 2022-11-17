@@ -20,7 +20,6 @@ class FoodContainer implements FoodContainerInterface
     {
         $getted = 0;
         foreach ($this->foodRows as $foodRow) {
-
             if ($foodRow->isFood($food)) {
                 $getted += $foodRow->getFood($amount);
             }

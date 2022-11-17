@@ -4,5 +4,5 @@ namespace App;
 
 interface FoodInterface
 {
-    public function getName():string;
+    public function getName(): string;
 }

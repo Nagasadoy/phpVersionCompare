@@ -4,7 +4,6 @@ namespace App;
 
 class LimitFoodContainer implements FoodContainerInterface
 {
-
     public function __construct(private readonly FoodContainerInterface $foodContainer, readonly int $limit)
     {
     }

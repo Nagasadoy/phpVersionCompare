@@ -25,8 +25,9 @@ class EaterGroup implements EaterInterface
         }
 
         if ($this->type !== $eater->getType()) {
-            throw new WrongTypeEaterException('В это стадо: [' . $this->type . '] под названием ' . "'" . $this->name . "'" .
-                ' нельзя добавить объект [' . $eater->getType() . '] по имени ' . "'" . $eater->getName() . "'");
+            throw new WrongTypeEaterException('В это стадо: [' . $this->type . '] под названием '
+                . "'" . $this->name . "'" . ' нельзя добавить объект [' . $eater->getType() . '] по имени '
+                . "'" . $eater->getName() . "'");
         } else {
             $this->group->attach($eater);
         }
@@ -77,7 +78,7 @@ class EaterGroup implements EaterInterface
     public function getAte(): int
     {
         $sum = 0;
-        foreach ($this->group as $eater){
+        foreach ($this->group as $eater) {
             $sum += $eater->getAte();
         }
         return $sum;

@@ -11,7 +11,7 @@ abstract class Report implements ReportInterface
     /**
      * @param EaterInterface[] $blackListArray
      */
-    public function __construct(array $blackListArray=[])
+    public function __construct(array $blackListArray = [])
     {
         $this->blackList = new SplObjectStorage();
         foreach ($blackListArray as $blackListItem) {
@@ -22,37 +22,35 @@ abstract class Report implements ReportInterface
     public function getTextReport(array $rawData): string
     {
         $text = '';
-        foreach ($rawData as $row){
-
+        foreach ($rawData as $row) {
             $currentEater = $row['eater'];
 
-            if($this->blackList->contains($currentEater)){
+            if ($this->blackList->contains($currentEater)) {
                 continue;
             }
 
-            if($currentEater->isGroup()){
-                $type = 'стадо<' .$currentEater->getType(). '>';
+            if ($currentEater->isGroup()) {
+                $type = 'стадо<' . $currentEater->getType() . '>';
             } else {
                 $type = $currentEater->getType();
             }
 
-            $text .= $type .' ' . "'" .$currentEater->getName(). "'" . ' скушало ';
+            $text .= $type . ' ' . "'" . $currentEater->getName() . "'" . ' скушало ';
 
             $foodAndCountForCurrentEater = [];
-            foreach ($row['foods'] as $food){
-                if(isset($foodAndCountForCurrentEater[$food['food']])){
+            foreach ($row['foods'] as $food) {
+                if (isset($foodAndCountForCurrentEater[$food['food']])) {
                     $foodAndCountForCurrentEater[$food['food']] += $food['amount'];
                 } else {
                     $foodAndCountForCurrentEater[$food['food']] = $food['amount'];
                 }
             }
 
-            foreach ($foodAndCountForCurrentEater as $foodName => $amount){
+            foreach ($foodAndCountForCurrentEater as $foodName => $amount) {
                 $text .= $foodName . ' в количестве ' . $amount . ' штук ' ;
             }
             $text .= PHP_EOL;
         }
         return $text;
     }
-
 }

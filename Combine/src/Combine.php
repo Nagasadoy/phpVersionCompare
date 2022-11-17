@@ -13,7 +13,7 @@ class Combine
 
     public array $dataForReport;
 
-    public function __construct(array $eaters, FoodContainer $foodContainer, )
+    public function __construct(array $eaters, FoodContainer $foodContainer,)
     {
         $this->eaters = $eaters;
         $this->foodContainer = $foodContainer;

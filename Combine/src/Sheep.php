@@ -4,7 +4,8 @@ namespace App;
 
 class Sheep extends Eater
 {
-    public function canEatThisFood(FoodInterface $food): bool{
+    public function canEatThisFood(FoodInterface $food): bool
+    {
         return $food instanceof Apple;
     }
 

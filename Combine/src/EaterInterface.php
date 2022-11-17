@@ -10,11 +10,11 @@ interface EaterInterface
 
     public function getAte(): int;
 
-    public function getAmountHowMuchCanEat():int;
+    public function getAmountHowMuchCanEat(): int;
 
-    public function getName():string;
+    public function getName(): string;
 
     public function getType(): string;
 
-    public function isGroup():bool;
+    public function isGroup(): bool;
 }

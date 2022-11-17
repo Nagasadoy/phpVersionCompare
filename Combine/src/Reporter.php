@@ -13,9 +13,8 @@ class Reporter implements ReportInterface
 
     public function render(array $rawData): void
     {
-        foreach ($this->reports as $report){
+        foreach ($this->reports as $report) {
             $report->render($rawData);
         }
     }
-
 }
