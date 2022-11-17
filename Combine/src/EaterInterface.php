@@ -8,6 +8,8 @@ interface EaterInterface
 
     public function canEatThisFood(FoodInterface $food): bool;
 
+    public function getAte(): int;
+
     public function getAmountHowMuchCanEat():int;
 
     public function getName():string;

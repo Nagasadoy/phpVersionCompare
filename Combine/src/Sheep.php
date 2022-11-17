@@ -10,7 +10,7 @@ class Sheep extends Eater
 
     public function eat(FoodContainerInterface $foodContainer): void
     {
-        $foodContainer->getFood(new Apple(), $this->amountCanEat );
+        $this->ate += $foodContainer->getFood(new Apple(), $this->amountCanEat);
     }
 
     public function getType(): string

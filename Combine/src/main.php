@@ -4,7 +4,7 @@ namespace App;
 
 use Exception;
 
-require_once('../vendor/autoload.php');
+require_once( __DIR__ .'/../vendor/autoload.php');
 
 $eater1 = new Punish(new Sheep('sheep1', 10), 1);
 $eater2 = new Sheep('sheep2', 5);

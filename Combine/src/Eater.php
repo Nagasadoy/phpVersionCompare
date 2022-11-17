@@ -4,9 +4,11 @@ namespace App;
 
 abstract class Eater implements EaterInterface
 {
+    protected int $ate;
 
     public function __construct(public readonly string $name, protected readonly int $amountCanEat)
     {
+        $this->ate = 0;
     }
 
     public function canEatThisFood(FoodInterface $food): bool
@@ -27,5 +29,10 @@ abstract class Eater implements EaterInterface
     public function isGroup(): bool
     {
         return false;
+    }
+
+    public function getAte(): int
+    {
+        return $this->ate;
     }
 }

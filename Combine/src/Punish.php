@@ -43,4 +43,9 @@ class Punish implements EaterInterface
     {
         return $this->eater->isGroup();
     }
+
+    public function getAte(): int
+    {
+        return $this->eater->getAte();
+    }
 }
