@@ -19,7 +19,7 @@ $group = new EaterGroup('стадо овец');
 try {
     $group->add($eater2);
     $group->add($eater1);
-    $group->add($eater3);
+//    $group->add($eater3);
 } catch (Exception $e) {
     echo $e->getMessage() . PHP_EOL;
 }
@@ -37,15 +37,12 @@ $combine = new Combine(
 );
 
 $combine->feed();
-print_r($combine->dataForReport);
 
-$blackList = new \SplObjectStorage();
-$blackList->attach($eater4);
-$blackList->attach($eater3);
+//$report1 = new ConsoleReport([$eater4, $eater3]);
+//$report2 = new FileReport([$group]);
 
-
-$report1 = new ConsoleReport($blackList);
-$report1->render($combine->dataForReport);
+$reporter = new Reporter([new ConsoleReport(), new FileReport([$group])]);
+$reporter->render($combine->dataForReport);
 
 
 

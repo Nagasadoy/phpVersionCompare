@@ -2,11 +2,12 @@
 
 namespace App;
 
-class FileReport implements ReportInterface
+class FileReport extends Report
 {
-
-    public function render(array $data): void
+    public function render(array $rawData): void
     {
-        // TODO: Implement render() method.
+        $text = '==Файловый отчет==' . PHP_EOL;
+        $text .= $this->getTextReport($rawData);
+        fwrite(fopen('report.txt','w+'), $text);
     }
 }

@@ -4,5 +4,5 @@ namespace App;
 
 interface ReportInterface
 {
-    public function render(array $data): void;
+    public function render(array $rawData): void;
 }

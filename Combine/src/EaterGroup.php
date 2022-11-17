@@ -20,12 +20,13 @@ class EaterGroup implements EaterInterface
      */
     public function add(EaterInterface $eater): void
     {
-        if(is_null($this->type)){
+        if (is_null($this->type)) {
             $this->type = $eater->getType();
         }
 
-        if($this->type !== $eater->getType()){
-            throw new Exception('В это стадо: ' . $this->type . ' нельзя добавить объект ' . $eater->getType());
+        if ($this->type !== $eater->getType()) {
+            throw new Exception('В это стадо: [' . $this->type . '] под названием ' . "'" . $this->name . "'" .
+                ' нельзя добавить объект [' . $eater->getType() . '] по имени ' . "'" . $eater->getName() . "'");
         } else {
             $this->group->attach($eater);
         }
@@ -33,8 +34,7 @@ class EaterGroup implements EaterInterface
 
     public function eat(FoodContainerInterface $foodContainer): void
     {
-        foreach ($this->group as $eater)
-        {
+        foreach ($this->group as $eater) {
             $eater->eat($foodContainer);
         }
     }
@@ -44,7 +44,7 @@ class EaterGroup implements EaterInterface
      */
     public function canEatThisFood(FoodInterface $food): bool
     {
-        if(count($this->group) == 0){
+        if (count($this->group) == 0) {
             throw new Exception('Стадо не может быть пустым!');
         }
         return $this->group[0]->canEatThisFood($food);
@@ -53,7 +53,7 @@ class EaterGroup implements EaterInterface
     public function getAmountHowMuchCanEat(): int
     {
         $sum = 0;
-        foreach ($this->group as $eater){
+        foreach ($this->group as $eater) {
             $sum += $eater->getAmountHowMuchCanEat();
         }
         return $sum;
