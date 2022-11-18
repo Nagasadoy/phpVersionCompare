@@ -1,7 +1,6 @@
 <?php
 
-namespace App\PhpSevenThree
-{
+namespace App\PhpSevenThree {
     echo 'Деструктурирование массива поддерживает присвоение по ссылкам ';
     echo PHP_EOL;
 
@@ -17,9 +16,10 @@ namespace App\PhpSevenThree
 
     echo 'Разрешена завершающая запятая в объявлении и вызове функций';
     echo PHP_EOL;
-    function sum(int $a, int $b,): int{
+    function sum(int $a, int $b,): int
+    {
         return $a + $b;
     }
 
-    echo(sum(1,1,)) . PHP_EOL;
+    echo (sum(1, 1)) . PHP_EOL;
 }

@@ -129,3 +129,53 @@ $testArray = ['a' => 1, 'b' => -2, 'c' => -3, 'd' => 4, 'e' => 50];
 $sum = array_reduce($testArray, fn($carry, $mixed) => $carry + $mixed, 0);
 
 var_dump($sum);
+
+$a = null;
+$a ??= 'a';
+var_dump($a);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// можно написать 1 раз и он будет ловить все исключения, при этом мы не используем try catch
+///
+
+set_exception_handler(function (Throwable $ex) {
+    echo $ex->getMessage() . PHP_EOL;
+});
+
+//$x = 1 / rand(0, 11);
+//var_dump($x);
+//
+//$Bar = "a";
+//$Foo = "Bar";
+//$World = "Foo";
+//$Hello = "World";
+//$a = "Hello";
+//
+//$a; //Returns Hello
+//$$a; //Returns World
+//$$$a; //Returns Foo
+//$$$$a; //Returns Bar
+//$$$$$a; //Returns a
+//
+//$$$$$$a; //Returns Hello
+//$$$$$$$a; //Returns World
+//
+//
+//$x = 'hello';
+//$$x = ' world';
+
+//var_dump($x . $hello);
+//var_dump($$x);
+
+function generator($start, $limit, $step): Generator
+{
+    for ($i = $start; $i <= $limit; $i += $step) {
+        yield $i;
+    }
+}
+
+$g = generator(...);
+
+foreach ($g(1, 1000, 3) as $value) {
+    echo $value . PHP_EOL;
+}
